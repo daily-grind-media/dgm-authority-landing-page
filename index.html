@@ -213,17 +213,32 @@ p strong{color:var(--white);font-weight:500;}
 .proof-source .ps-corner .dot{width:7px;height:7px;border-radius:50%;background:var(--copper);animation:blink 1.6s ease-in-out infinite;}
 .ps-video{position:absolute;inset:0;overflow:hidden;z-index:1;background:#0b0908;}
 .ps-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
-/* editorial session gallery — image-only cards, 3×2 desktop / 2 tablet / 1 mobile */
-.session-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.8vw,20px);margin-top:clamp(8px,2vw,20px);}
-@media(max-width:820px){.session-gallery{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:520px){.session-gallery{grid-template-columns:1fr;}}
-.session-card{position:relative;overflow:hidden;border:1px solid var(--border);background:#0b0908;aspect-ratio:4/3;transition:border-color .5s ease,transform .5s ease;}
+/* editorial session gallery — vertical 9:16 portrait cards, 3 / 2 / 2 columns */
+.session-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.8vw,18px);max-width:900px;margin:clamp(8px,2vw,20px) auto 0;}
+@media(max-width:820px){.session-gallery{grid-template-columns:repeat(2,minmax(0,1fr));max-width:560px;}}
+@media(max-width:420px){.session-gallery{grid-template-columns:1fr;max-width:320px;}}
+.session-card{position:relative;overflow:hidden;border:1px solid var(--border);background:var(--card);aspect-ratio:9/16;transition:border-color .5s ease,transform .5s ease;}
 .session-card:hover{border-color:var(--copper-dark);transform:translateY(-3px);}
-.session-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
+.session-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 1s cubic-bezier(.2,.7,.2,1);}
 .session-card:hover img{transform:scale(1.03);}
-/* per-image framing tweaks so faces sit naturally */
-.session-card.pos-high img{object-position:center 30%;}
-.session-card.pos-mid img{object-position:center 38%;}
+/* per-image framing so faces sit naturally in the portrait crop */
+.session-img-1{object-position:center 22%;}
+.session-img-2{object-position:center 20%;}
+.session-img-3{object-position:center 22%;}
+.session-img-4{object-position:center 22%;}
+
+/* ---------- client review (Section 06 proof close) ---------- */
+.review{max-width:900px;margin:clamp(48px,6vw,80px) auto 0;padding:clamp(32px,4.4vw,52px) clamp(26px,4vw,56px);background:linear-gradient(150deg,rgba(187,114,90,0.05),transparent 60%),var(--card);border:1px solid var(--border);position:relative;}
+.review::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--copper),var(--copper-dark) 55%,transparent);}
+.review-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:0.36em;font-size:0.66rem;color:var(--copper);margin-bottom:clamp(18px,2.4vw,24px);}
+.review .stars{display:flex;gap:5px;margin-bottom:clamp(22px,3vw,30px);}
+.review .stars svg{width:18px;height:18px;fill:var(--copper);}
+.review-body{margin:0;}
+.review-body p{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:#e2ded7;font-size:clamp(1.12rem,2vw,1.4rem);line-height:1.55;max-width:64ch;}
+.review-body p + p{margin-top:clamp(16px,2vw,22px);}
+.review-attrib{display:flex;flex-direction:column;gap:6px;margin-top:clamp(26px,3.4vw,36px);padding-top:clamp(22px,2.6vw,28px);border-top:1px solid var(--border);}
+.review-attrib .ra-name{font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.2em;font-size:clamp(0.92rem,1.7vw,1.05rem);color:var(--white);}
+.review-attrib .ra-role{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.24em;font-size:0.68rem;color:var(--copper-light);}
 
 /* ---------- who it's for ---------- */
 .for-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,54px);align-items:start;margin-top:clamp(38px,5vw,54px);}
@@ -285,21 +300,16 @@ p strong{color:var(--white);font-weight:500;}
 .conversion-head .eyebrow{justify-content:center;}
 .conversion-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,6vw,4.6rem);line-height:0.95;text-transform:uppercase;color:var(--white);margin-bottom:18px;}
 .conversion-head p{color:#a9a6a0;font-size:clamp(0.95rem,1.7vw,1.08rem);max-width:58ch;margin:0 auto;}
-/* live GHL embed wrappers — transparent, no frame, no card-in-card */
+.conversion-cue{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,3.4vw,2.2rem);text-transform:uppercase;letter-spacing:0.03em;color:var(--copper-light);margin-top:clamp(22px,3vw,30px);line-height:1;}
+/* live GHL embed wrapper — transparent, no frame, no card-in-card */
 .ghl-embed{width:100%;background:transparent;border:none;overflow:hidden;}
 .ghl-embed iframe{display:block;width:100%;border:none;overflow:hidden;}
-#book .ghl-embed iframe{min-height:760px;}
-#inquiry .ghl-embed iframe{min-height:720px;}
-/* keep the mobile sticky CTA from ever overlapping the conversion widgets */
-@media(max-width:860px){#book{padding-bottom:calc(clamp(56px,7vw,90px) + 84px);}}
-/* secondary inquiry — subordinate transition beneath the calendar, not a full section */
-.secondary-inquiry{max-width:760px;margin:clamp(48px,6vw,80px) auto 0;padding-top:clamp(40px,5vw,60px);border-top:1px solid var(--border);}
-.secondary-inquiry .si-head{text-align:center;margin-bottom:clamp(24px,3vw,36px);}
-.secondary-inquiry .si-head h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);line-height:0.98;text-transform:uppercase;color:var(--white);margin-bottom:14px;}
-.secondary-inquiry .si-head p{color:#a9a6a0;font-size:clamp(0.92rem,1.6vw,1.02rem);max-width:52ch;margin:0 auto;}
+#authority-inquiry .ghl-embed{max-width:760px;margin:0 auto;}
+#authority-inquiry .ghl-embed iframe{min-height:720px;}
+/* keep the mobile sticky CTA from ever overlapping the form */
+@media(max-width:860px){#authority-inquiry{padding-bottom:calc(clamp(56px,7vw,90px) + 84px);}}
 @media(max-width:640px){
-  #book .ghl-embed iframe{min-height:840px;}
-  #inquiry .ghl-embed iframe{min-height:820px;}
+  #authority-inquiry .ghl-embed iframe{min-height:820px;}
 }
 
 /* ---------- footer ---------- */
@@ -333,7 +343,7 @@ footer .lockup{justify-content:center;}
   body{background:#fff;color:#000;}
   .grain,.hero::after,.final::after,.nav{display:none;}
   .reveal,.mask{opacity:1!important;transform:none!important;clip-path:none!important;}
-  .prob,.stage,.proc,.outcome,.flow-node,.radial-node,.session-card,.eco,.conversion-section{break-inside:avoid;}
+  .prob,.stage,.proc,.outcome,.flow-node,.radial-node,.session-card,.review,.eco,.conversion-section{break-inside:avoid;}
   section{padding:24px 0;}
   .hero{min-height:auto;}
   .hero-title,h2.section-title,.final h2,.footer-mark{color:#111;}
@@ -356,7 +366,7 @@ footer .lockup{justify-content:center;}
     <a href="#leverage" class="link">The Leverage</a>
     <a href="#process" class="link">How It Works</a>
     <a href="#ecosystem" class="link">Ecosystem</a>
-    <a href="#book" class="nav-cta">Book an Authority Call</a>
+    <a href="#authority-inquiry" class="nav-cta">Tell Us About Your Business</a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -369,7 +379,7 @@ footer .lockup{justify-content:center;}
       <h1 class="hero-title reveal d1">One Hour<br>Of Your Time.<span class="row2">An Entire<br>Marketing Ecosystem.</span></h1>
       <p class="hero-sub reveal d2">You bring the expertise. We handle the strategy, production, content creation, and distribution that turns it into authority across the platforms that matter to your business.</p>
       <div class="hero-ctas reveal d3">
-        <a href="#book" class="btn btn-primary">Book an Authority Discovery Call <span class="ar">→</span></a>
+        <a href="#authority-inquiry" class="btn btn-primary">Tell Us About Your Business <span class="ar">→</span></a>
         <a href="#shift" class="btn btn-ghost">See How It Works <span class="ar">↓</span></a>
       </div>
       <div class="hero-meta reveal d4">
@@ -590,18 +600,40 @@ footer .lockup{justify-content:center;}
     </div>
     <div class="session-gallery">
       <!-- MEDIA SLOT: SESSION IMAGE 1 -->
-      <div class="session-card reveal"><img src="assets/session-tony.jpg" alt="Expert in a DGM Authority Session"></div>
+      <div class="session-card reveal"><img class="session-img-1" src="assets/session-tony.jpg" alt="Expert in a DGM Authority Session"></div>
       <!-- MEDIA SLOT: SESSION IMAGE 2 -->
-      <div class="session-card pos-high reveal d1"><img src="assets/session-amelia.jpg" alt="Expert in a DGM Authority Session"></div>
+      <div class="session-card reveal d1"><img class="session-img-2" src="assets/session-amelia.jpg" alt="Expert in a DGM Authority Session"></div>
       <!-- MEDIA SLOT: SESSION IMAGE 3 -->
-      <div class="session-card pos-mid reveal d2"><img src="assets/session-shane.jpg" alt="Expert in a DGM Authority Session"></div>
+      <div class="session-card reveal d2"><img class="session-img-3" src="assets/session-shane.jpg" alt="Expert in a DGM Authority Session"></div>
       <!-- MEDIA SLOT: SESSION IMAGE 4 -->
-      <div class="session-card pos-mid reveal"><img src="assets/session-babe.jpg" alt="Expert in a DGM Authority Session"></div>
-      <!-- MEDIA SLOT: SESSION IMAGE 5 -->
-      <div class="session-card pos-mid reveal d1"><img src="assets/session-shane.jpg" alt="Expert in a DGM Authority Session"></div>
-      <!-- MEDIA SLOT: SESSION IMAGE 6 -->
-      <div class="session-card pos-high reveal d2"><img src="assets/session-amelia.jpg" alt="Expert in a DGM Authority Session"></div>
+      <div class="session-card reveal"><img class="session-img-4" src="assets/session-babe.jpg" alt="Expert in a DGM Authority Session"></div>
+      <!-- MEDIA SLOT: SESSION IMAGE 5 — awaiting a 5th unique session still; add a card here (do not duplicate an existing image):
+           <div class="session-card reveal d1"><img class="session-img-5" src="assets/session-FIVE.jpg" alt="Expert in a DGM Authority Session"></div> -->
+      <!-- MEDIA SLOT: SESSION IMAGE 6 — awaiting a 6th unique session still; add a card here (do not duplicate an existing image):
+           <div class="session-card reveal d2"><img class="session-img-6" src="assets/session-SIX.jpg" alt="Expert in a DGM Authority Session"></div> -->
     </div>
+
+    <!-- CLIENT REVIEW — real testimonial, editorial DGM treatment (not a Google widget) -->
+    <figure class="review reveal">
+      <div class="review-eyebrow">Client Review</div>
+      <div class="stars" aria-label="Five out of five stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 21.4l1.4-6.8L2.2 9.9l6.9-.8z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 21.4l1.4-6.8L2.2 9.9l6.9-.8z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 21.4l1.4-6.8L2.2 9.9l6.9-.8z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 21.4l1.4-6.8L2.2 9.9l6.9-.8z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.8 5.9 21.4l1.4-6.8L2.2 9.9l6.9-.8z"/></svg>
+      </div>
+      <blockquote class="review-body">
+        <p>Attention to detail, understanding what kind of story you are trying to paint, and an incredible ability to help you PAINT that story</p>
+        <p>I’ve been in the fitness industry for 5 years, and it is a space (particularly on the social media/marketing side) that is cluttered with an inability to find nuance even though most decisions made are full of them - Lo, Walter and the team at daily grind media have helped me craft a palatable message to my audience that still includes the nuance and attention to detail that I am looking to provide in my clients</p>
+        <p>not to mention… Lo is a top tier podcast host and a wonderful conversation shepherd</p>
+        <p>Would highly recommend this to anyone that is at a high level within their own profession, knows their voice and what they are trying to accomplish but has trouble trying to spread their message and increase their audience by making said knowledge and message palatable to the masses</p>
+      </blockquote>
+      <figcaption class="review-attrib">
+        <span class="ra-name">Shane Dempsey</span>
+        <span class="ra-role">Fitness Professional</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -684,45 +716,23 @@ footer .lockup{justify-content:center;}
 
 <div class="divider-block"><div class="wrap"><div class="divider"></div></div></div>
 
-<!-- ============ 10 BUILD YOUR AUTHORITY — UNIFIED CONVERSION ============ -->
-<section id="book" class="conversion-section">
+<!-- ============ 10 BUILD YOUR AUTHORITY — INQUIRY CONVERSION ============ -->
+<section id="authority-inquiry" class="conversion-section">
   <div class="wrap">
     <div class="conversion-head reveal">
       <div class="eyebrow"><span class="sec-num">10</span> Build Your Authority</div>
       <h2>Let's Turn What You Know<br>Into What You're Known For.</h2>
-      <p>If you have the expertise but not the time, system, or team to consistently turn it into marketing, let's talk about what an Authority System could look like for your business.</p>
+      <p>Tell us about your expertise, your business, and what you want to become known for. We'll review it and determine the right next step.</p>
+      <div class="conversion-cue">Tell Us About Your Business.</div>
     </div>
-    <!-- GHL AUTHORITY DISCOVERY CALENDAR — the primary conversion, directly beneath the intro
-         Replace AUTHORITY_CALENDAR_ID below with the real Authority booking widget ID
-         from GoHighLevel (do NOT reuse the Creative calendar). The clean, unframed embed
-         treatment matches the Creative/Growth pages. Remove this .ghl-embed div to restore a placeholder. -->
-    <div class="ghl-embed ghl-embed--cal">
+    <!-- LIVE GHL AUTHORITY INQUIRY FORM — primary conversion, clean unframed DGM embed -->
+    <div class="ghl-embed reveal">
       <iframe
-        src="https://api.leadconnectorhq.com/widget/booking/AUTHORITY_CALENDAR_ID"
-        allow="payment"
+        src="https://api.leadconnectorhq.com/widget/form/waB4k4CkGfbwhgIeZEWT"
         style="width:100%;border:none;overflow:hidden;"
-        scrolling="no"
-        id="AUTHORITY_CALENDAR_ID"
-        title="Book an Authority Discovery Call">
+        id="inline-waB4k4CkGfbwhgIeZEWT"
+        title="Tell us about your business">
       </iframe>
-    </div>
-
-    <!-- secondary inquiry — smaller transition beneath the calendar, not a full section -->
-    <div class="secondary-inquiry" id="inquiry">
-      <div class="si-head reveal">
-        <div class="eyebrow" style="justify-content:center;">Not Ready To Book?</div>
-        <h3>Tell Us About Your Business.</h3>
-        <p>Share a little about your expertise, business, and what you're trying to become known for. We'll review it and determine the right next step.</p>
-      </div>
-      <!-- LIVE GHL AUTHORITY INQUIRY FORM — clean unframed embed, matching the calendar treatment above -->
-      <div class="ghl-embed reveal">
-        <iframe
-          src="https://api.leadconnectorhq.com/widget/form/waB4k4CkGfbwhgIeZEWT"
-          style="width:100%;border:none;overflow:hidden;"
-          id="inline-waB4k4CkGfbwhgIeZEWT"
-          title="Tell us about your business">
-        </iframe>
-      </div>
     </div>
   </div>
 </section>
@@ -741,14 +751,14 @@ footer .lockup{justify-content:center;}
       <a href="#leverage">The Leverage</a>
       <a href="#handles">What We Handle</a>
       <a href="#process">How It Works</a>
-      <a href="#book">Book an Authority Discovery Call</a>
+      <a href="#authority-inquiry">Tell Us About Your Business</a>
     </nav>
     <div class="footer-meta">Creative &nbsp;·&nbsp; Authority &nbsp;·&nbsp; Growth</div>
   </div>
 </footer>
 
-<!-- mobile sticky CTA — shows after hero, hides over the booking + inquiry embeds -->
-<div class="sticky-cta" id="stickyCta"><a href="#book">Book an Authority Discovery Call →</a></div>
+<!-- mobile sticky CTA — shows after hero, hides over the inquiry form -->
+<div class="sticky-cta" id="stickyCta"><a href="#authority-inquiry">Tell Us About Your Business →</a></div>
 
 <script>
 (function(){
@@ -777,23 +787,23 @@ footer .lockup{justify-content:center;}
   var nav=document.getElementById('nav');
   function onScroll(){if(window.scrollY>40){nav.classList.add('scrolled');}else{nav.classList.remove('scrolled');}}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
-  // mobile menu — jump to book
+  // mobile menu — jump to the inquiry form
   var t=document.getElementById('navToggle');
-  if(t){t.addEventListener('click',function(){document.getElementById('book').scrollIntoView({behavior:'smooth'});});}
-  // mobile sticky CTA: appear after hero, disappear once the unified conversion zone is in view
+  if(t){t.addEventListener('click',function(){document.getElementById('authority-inquiry').scrollIntoView({behavior:'smooth'});});}
+  // mobile sticky CTA: appear after hero, disappear once the inquiry section is in view
   var sticky=document.getElementById('stickyCta');
   var hero=document.getElementById('top');
-  var book=document.getElementById('book');
+  var inquiry=document.getElementById('authority-inquiry');
   if(sticky&&('IntersectionObserver' in window)){
-    var pastHero=false, atBook=false;
-    function sync(){ if(pastHero&&!atBook){sticky.classList.add('show');}else{sticky.classList.remove('show');} }
+    var pastHero=false, atInquiry=false;
+    function sync(){ if(pastHero&&!atInquiry){sticky.classList.add('show');}else{sticky.classList.remove('show');} }
     new IntersectionObserver(function(e){pastHero=!e[0].isIntersecting;sync();},{threshold:0.15}).observe(hero);
-    if(book){new IntersectionObserver(function(e){atBook=e[0].isIntersecting;sync();},{threshold:0.02,rootMargin:'0px 0px -10% 0px'}).observe(book);}
+    if(inquiry){new IntersectionObserver(function(e){atInquiry=e[0].isIntersecting;sync();},{threshold:0.02,rootMargin:'0px 0px -10% 0px'}).observe(inquiry);}
   }
 })();
 </script>
 
-<!-- GoHighLevel embed script — loaded ONCE globally; drives the calendar (#book) auto-resize -->
+<!-- GoHighLevel embed script — loaded ONCE globally; drives the inquiry form (#authority-inquiry) auto-resize -->
 <script
   src="https://link.msgsndr.com/js/form_embed.js"
   type="text/javascript">
