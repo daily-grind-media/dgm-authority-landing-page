@@ -105,33 +105,16 @@ p strong{color:var(--white);font-weight:500;}
 .hero-meta .hm{display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.18em;font-size:0.68rem;color:#a9a6a0;}
 .hero-meta .hm .hm-dot{width:6px;height:6px;border-radius:50%;background:var(--copper);flex:none;}
 
-/* ---------- authority-session media placeholder (mirrors Growth hero-media treatment) ---------- */
+/* ---------- authority-session media (hero) ---------- */
 .session-media{position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,#161210,#0c0a09);border:1px solid var(--border);overflow:hidden;}
 @media(max-width:960px){.session-media{aspect-ratio:16/10;}}
-.session-media::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(187,114,90,0.14),transparent 60%);}
-.session-media::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(180deg,transparent,transparent 2px,rgba(255,255,255,0.012) 3px);pointer-events:none;}
-.sm-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;}
-.play{width:74px;height:74px;border-radius:50%;border:1px solid var(--copper);display:flex;align-items:center;justify-content:center;position:relative;transition:transform .5s ease,border-color .5s ease;}
-.play::after{content:"";width:0;height:0;border-left:16px solid var(--copper);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:5px;transition:border-left-color .5s ease;}
-.play::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid var(--copper-dark);opacity:.5;animation:pulse 2.6s ease-out infinite;}
-@keyframes pulse{0%{transform:scale(1);opacity:.5;}100%{transform:scale(1.4);opacity:0;}}
-.session-media:hover .play{transform:scale(1.08);border-color:var(--copper-light);}
-/* abstract staging waveform — reads as an authority-session visual, not a wireframe */
-.sm-signal{display:flex;align-items:flex-end;justify-content:center;gap:6px;height:38px;margin-top:28px;}
-.sm-signal span{display:block;width:4px;border-radius:2px;background:linear-gradient(var(--copper-light),var(--copper-dark));opacity:.85;animation:smwave 1.8s ease-in-out infinite;}
-.sm-signal span:nth-child(1){height:40%;animation-delay:0s;}
-.sm-signal span:nth-child(2){height:78%;animation-delay:.18s;}
-.sm-signal span:nth-child(3){height:100%;animation-delay:.36s;}
-.sm-signal span:nth-child(4){height:64%;animation-delay:.54s;}
-.sm-signal span:nth-child(5){height:46%;animation-delay:.72s;}
-@keyframes smwave{0%,100%{transform:scaleY(0.5);opacity:.6;}50%{transform:scaleY(1);opacity:1;}}
-/* real dropped-in image fills the frame edge to edge */
-.sm-fill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+.session-media::before{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(circle at 50% 42%,rgba(187,114,90,0.14),transparent 60%);pointer-events:none;}
+.session-media::after{content:"";position:absolute;inset:0;z-index:2;background-image:repeating-linear-gradient(180deg,transparent,transparent 2px,rgba(255,255,255,0.012) 3px);pointer-events:none;}
 .sm-corner{position:absolute;top:16px;left:16px;z-index:3;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.24em;text-transform:uppercase;font-size:0.6rem;color:var(--copper);display:flex;align-items:center;gap:8px;pointer-events:none;}
 .sm-corner .dot{width:7px;height:7px;border-radius:50%;background:var(--copper);animation:blink 1.6s ease-in-out infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
-.sm-time{position:absolute;bottom:16px;right:18px;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.2em;font-size:0.62rem;color:var(--muted);}
-/* live authority-session video — fills the frame (16:9 source, cover-cropped) — remove wrapper to restore placeholder */
+.sm-time{position:absolute;bottom:16px;right:18px;z-index:3;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.2em;font-size:0.62rem;color:var(--muted);pointer-events:none;}
+/* live authority-session video — fills the frame (16:9 source, cover-cropped) */
 .sm-video{position:absolute;inset:0;overflow:hidden;z-index:1;background:#0b0908;}
 .sm-video iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);height:100%;aspect-ratio:16/9;width:auto;min-width:100%;border:0;}
 .hero-scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.3em;font-size:0.62rem;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:3;}
@@ -228,39 +211,30 @@ p strong{color:var(--white);font-weight:500;}
 .proof-source .ps-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(6,5,4,0.7));}
 .proof-source .ps-corner{position:absolute;top:14px;left:16px;z-index:3;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.24em;text-transform:uppercase;font-size:0.58rem;color:var(--copper);display:flex;align-items:center;gap:8px;}
 .proof-source .ps-corner .dot{width:7px;height:7px;border-radius:50%;background:var(--copper);animation:blink 1.6s ease-in-out infinite;}
-.proof-source .ps-body{position:relative;z-index:3;text-align:center;padding:20px;}
-.proof-source .ps-body .play{margin:0 auto 18px;width:60px;height:60px;}
-.proof-source .ps-body .ps-k{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.26em;font-size:0.62rem;color:var(--white);}
-/* real dropped-in imagery fills these frames edge to edge, above the abstract treatment */
-.ps-fill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;}
+/* real dropped-in imagery fills these frames edge to edge */
 .t-fill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;}
+/* portrait (Shorts) source video — narrower frame, vertical aspect, video fills it cover-cropped */
+.proof-source:has(.ps-frame--short){max-width:340px;}
+.ps-frame--short{aspect-ratio:9/16;max-width:340px;margin:0 auto;}
+.ps-video{position:absolute;inset:0;overflow:hidden;z-index:1;background:#0b0908;}
+.ps-video iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;aspect-ratio:9/16;height:auto;min-height:100%;border:0;}
 .proof-stem{position:relative;z-index:2;width:1px;height:clamp(26px,4vw,40px);background:linear-gradient(var(--copper),transparent);margin:0 auto clamp(26px,3vw,36px);}
 .touch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(12px,1.8vw,20px);}
 .touch{position:relative;overflow:hidden;border:1px solid var(--border);background:linear-gradient(150deg,#141110,#0b0908);transition:border-color .5s ease,transform .5s ease;}
 .touch:hover{border-color:var(--copper-dark);transform:translateY(-3px);}
-/* sophisticated replaceable mockup frame — a titled asset module, not a dashed box */
-.touch .t-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);}
-.touch .t-bar .t-dot{width:7px;height:7px;border-radius:50%;background:var(--copper-dark);flex:none;}
-.touch .t-bar .t-kind{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.2em;font-size:0.58rem;color:var(--copper);}
 .touch .t-canvas{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(150deg,#161210,#0b0908);}
-.touch .t-canvas::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 60% 34%,rgba(187,114,90,0.10),transparent 62%);opacity:0;transition:opacity .6s ease;}
+.touch .t-canvas::before{content:"";position:absolute;inset:0;z-index:4;background:radial-gradient(circle at 60% 34%,rgba(187,114,90,0.12),transparent 62%);opacity:0;transition:opacity .6s ease;pointer-events:none;}
 .touch:hover .t-canvas::before{opacity:1;}
-/* neutral wireframe motif inside each canvas — implies the asset without inventing a client claim */
-.touch .t-wire{position:absolute;inset:clamp(16px,4vw,26px);display:flex;flex-direction:column;justify-content:flex-end;gap:9px;z-index:1;}
-.touch .t-wire i{display:block;height:8px;background:linear-gradient(90deg,rgba(187,114,90,0.22),rgba(255,255,255,0.05));border-radius:2px;}
-.touch .t-wire i.w1{width:52%;height:14px;background:linear-gradient(90deg,rgba(187,114,90,0.32),transparent);}
-.touch .t-wire i.w2{width:88%;}
-.touch .t-wire i.w3{width:70%;}
-.touch .t-wire i.w4{width:80%;}
 .touch .t-foot{padding:13px 16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;}
 .touch .t-foot .t-name{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.14em;font-size:0.68rem;color:#cfccc6;}
-.touch .t-foot .t-ph{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.12em;font-size:0.54rem;color:var(--muted);opacity:.8;}
-/* portrait-ish variants for reel / social */
-.touch.tall .t-canvas{aspect-ratio:3/4;}
-/* broad conceptual variant — category-only modules, no proprietary output labels */
+/* broad conceptual variant — category-only modules over real session imagery */
 .touch-grid--broad{grid-template-columns:repeat(3,1fr);}
 @media(max-width:640px){.touch-grid--broad{grid-template-columns:repeat(2,1fr);}}
 .touch-grid--broad .t-canvas{aspect-ratio:5/3;}
+/* real session imagery: cover-crop to the subject, subtle scrim + hover zoom to unify the set */
+.touch-grid--broad .t-fill{transition:transform 1.1s cubic-bezier(.2,.7,.2,1);}
+.touch-grid--broad .touch:hover .t-fill{transform:scale(1.05);}
+.touch-grid--broad .t-canvas::after{content:"";position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(8,8,8,0.10),rgba(8,8,8,0.52));pointer-events:none;}
 .touch-grid--broad .t-foot{justify-content:center;padding:15px 16px;}
 .touch-grid--broad .t-foot .t-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.2rem,2vw,1.55rem);letter-spacing:0.04em;color:var(--copper-light);}
 .proof-note{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--white);font-size:clamp(1.3rem,3vw,1.85rem);margin-top:clamp(32px,4vw,48px);line-height:1.35;text-align:center;max-width:52ch;margin-left:auto;margin-right:auto;}
@@ -367,7 +341,7 @@ footer .lockup{justify-content:center;}
   .reveal, .js-ready .reveal{opacity:1!important;transform:none!important;transition:none!important;}
   .mask, .js-ready .mask{clip-path:inset(0 0 0 0)!important;transition:none!important;}
   html{scroll-behavior:auto;}
-  .lockup-mark span,.play::before,.sm-corner .dot,.proof-source .ps-corner .dot,.sm-signal span{animation:none !important;}
+  .lockup-mark span,.sm-corner .dot,.proof-source .ps-corner .dot{animation:none !important;}
   .sticky-cta{transition:none;}
 }
 @media print{
@@ -420,29 +394,19 @@ footer .lockup{justify-content:center;}
       </div>
     </div>
     <div class="reveal d2">
-      <!-- MEDIA SLOT: HERO AUTHORITY SESSION
-           Drop in a real DGM cinematic authority/podcast production image or video here.
-           For an image: add <img class="sm-fill" src="..." alt="..."> as the first child of .session-media.
-           For a video: uncomment the .sm-video block below and set the embed URL.
-           The abstract treatment stays visible until real media is added — it is intentional staging art, not a wireframe. -->
+      <!-- MEDIA SLOT: HERO AUTHORITY SESSION — live DGM authority session film -->
       <div class="session-media mask">
         <span class="sm-corner"><span class="dot"></span> Authority Session</span>
-        <div class="sm-inner">
-          <div class="play" aria-hidden="true"></div>
-          <div class="sm-signal" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-        </div>
         <span class="sm-time">Source Conversation</span>
-        <!--
         <div class="sm-video">
           <iframe
-            src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0&modestbranding=1&playsinline=1"
+            src="https://www.youtube-nocookie.com/embed/s-2A90-W9Fs?rel=0&modestbranding=1&playsinline=1"
             title="DGM Authority Session"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen>
           </iframe>
         </div>
-        -->
       </div>
     </div>
   </div>
@@ -624,33 +588,35 @@ footer .lockup{justify-content:center;}
     <div class="eyebrow reveal"><span class="sec-num">06</span> Authority In Action</div>
     <h2 class="section-title reveal">One Source.<br><span class="cop">An Entire Ecosystem.</span></h2>
     <p class="lead reveal">The conversation is captured once. The value continues long after recording day.</p>
-    <!-- MEDIA SLOT: AUTHORITY SOURCE SESSION
-         Drop in real DGM authority-session / podcast production imagery or video here.
-         For an image: add <img class="ps-fill" src="..." alt="..."> as the first child of .ps-frame.
-         The abstract treatment below is intentional staging art until real media is supplied. -->
+    <!-- MEDIA SLOT: AUTHORITY SOURCE SESSION — live DGM authority-session Short -->
     <div class="proof-source reveal">
-      <div class="ps-frame">
+      <div class="ps-frame ps-frame--short">
         <span class="ps-corner"><span class="dot"></span> Source Session</span>
-        <div class="ps-body">
-          <div class="play" aria-hidden="true"></div>
-          <div class="ps-k">The Source Session</div>
+        <div class="ps-video">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/BAhAgCWqU_g?rel=0&modestbranding=1&playsinline=1"
+            title="DGM Authority Session"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>
     <div class="proof-stem"></div>
     <div class="touch-grid touch-grid--broad">
-      <!-- MEDIA SLOT: ECOSYSTEM / CONTENT — add <img class="t-fill" src="..." alt=""> inside .t-canvas -->
-      <div class="touch reveal"><div class="t-canvas"><div class="t-wire"><i class="w1"></i><i class="w2"></i><i class="w3"></i></div></div><div class="t-foot"><span class="t-name">Content</span></div></div>
+      <!-- MEDIA SLOT: ECOSYSTEM / CONTENT -->
+      <div class="touch reveal"><div class="t-canvas"><img class="t-fill" src="assets/session-tony.jpg" alt="Authority session in the DGM studio"></div><div class="t-foot"><span class="t-name">Content</span></div></div>
       <!-- MEDIA SLOT: ECOSYSTEM / SOCIAL -->
-      <div class="touch reveal d1"><div class="t-canvas"><div class="t-wire"><i class="w1"></i><i class="w3"></i></div></div><div class="t-foot"><span class="t-name">Social</span></div></div>
+      <div class="touch reveal d1"><div class="t-canvas"><img class="t-fill" src="assets/session-amelia.jpg" alt="Authority session in the DGM studio"></div><div class="t-foot"><span class="t-name">Social</span></div></div>
       <!-- MEDIA SLOT: ECOSYSTEM / SEARCH -->
-      <div class="touch reveal d2"><div class="t-canvas"><div class="t-wire"><i class="w1"></i><i class="w2"></i><i class="w4"></i></div></div><div class="t-foot"><span class="t-name">Search</span></div></div>
+      <div class="touch reveal d2"><div class="t-canvas"><img class="t-fill" src="assets/session-shane.jpg" alt="Authority session in the DGM studio"></div><div class="t-foot"><span class="t-name">Search</span></div></div>
       <!-- MEDIA SLOT: ECOSYSTEM / EMAIL -->
-      <div class="touch reveal"><div class="t-canvas"><div class="t-wire"><i class="w1"></i><i class="w2"></i><i class="w3"></i></div></div><div class="t-foot"><span class="t-name">Email</span></div></div>
+      <div class="touch reveal"><div class="t-canvas"><img class="t-fill" src="assets/session-babe.jpg" alt="Authority session in the DGM studio"></div><div class="t-foot"><span class="t-name">Email</span></div></div>
       <!-- MEDIA SLOT: ECOSYSTEM / BRAND -->
-      <div class="touch reveal d1"><div class="t-canvas"><div class="t-wire"><i class="w1"></i><i class="w2"></i></div></div><div class="t-foot"><span class="t-name">Brand</span></div></div>
+      <div class="touch reveal d1"><div class="t-canvas"><img class="t-fill" src="assets/session-shane.jpg" alt="Authority session in the DGM studio"></div><div class="t-foot"><span class="t-name">Brand</span></div></div>
       <!-- MEDIA SLOT: ECOSYSTEM / SALES -->
-      <div class="touch reveal d2"><div class="t-canvas"><div class="t-wire"><i class="w1"></i><i class="w3"></i><i class="w4"></i></div></div><div class="t-foot"><span class="t-name">Sales</span></div></div>
+      <div class="touch reveal d2"><div class="t-canvas"><img class="t-fill" src="assets/session-amelia.jpg" alt="Authority session in the DGM studio"></div><div class="t-foot"><span class="t-name">Sales</span></div></div>
     </div>
     <p class="proof-note reveal">One focused session gives your marketing <span class="accent">more places to work.</span></p>
   </div>
