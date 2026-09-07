@@ -107,15 +107,23 @@ p strong{color:var(--white);font-weight:500;}
 @media(min-width:961px){
   .hero .wrap{max-width:1500px;padding-left:clamp(48px,5vw,80px);padding-right:clamp(48px,5vw,80px);}
   .hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(400px,0.85fr);gap:clamp(48px,4.5vw,80px);align-items:center;}
-  .hero-grid > div:first-child{min-width:0;}
+  .hero-copy{min-width:0;}
   .hero-title{font-size:clamp(4.4rem,5vw,6rem);line-height:0.86;}
   .hero-title .brk-m{display:none;}
   .hero-title .brk-d{display:inline;}
   .session-media{width:100%;max-width:600px;justify-self:end;}
 }
-/* tablet/mobile: stacked, full-width 16:9 media beneath the copy, no transforms */
+/* tablet/mobile: single flex column; copy wrapper dissolves so its children interleave with the
+   media via order — sequence is Eyebrow → Headline → Copy → Video → CTAs → Metadata (no duplicate iframe, no transforms) */
 @media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;}
+  .hero-grid{display:flex;flex-direction:column;gap:0;}
+  .hero-copy{display:contents;}
+  .hero-eyebrow{order:1;}
+  .hero-title{order:2;}
+  .hero-sub{order:3;}
+  .hero-media-col{order:4;margin-top:clamp(24px,6vw,32px);}
+  .hero-ctas{order:5;margin-top:clamp(28px,6vw,36px);}
+  .hero-meta{order:6;margin-top:clamp(30px,7vw,40px);}
   .session-media{width:100%;max-width:100%;}
 }
 /* hero metadata strip */
@@ -394,7 +402,7 @@ footer .lockup{justify-content:center;}
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="wrap hero-grid">
-    <div>
+    <div class="hero-copy">
       <div class="hero-eyebrow reveal">Authority / Daily Grind Media — San Diego</div>
       <h1 class="hero-title reveal d1">One Hour<br class="brk-m"> Of<br class="brk-d"> Your Time.<span class="row2">An Entire<br class="brk-m"> Marketing<br class="brk-d"> Ecosystem.</span></h1>
       <p class="hero-sub reveal d2">You bring the expertise. We handle the strategy, production, content creation, and distribution that turns it into authority across the platforms that matter to your business.</p>
@@ -408,7 +416,7 @@ footer .lockup{justify-content:center;}
         <span class="hm"><span class="hm-dot"></span> Multi-Platform Marketing</span>
       </div>
     </div>
-    <div class="reveal d2">
+    <div class="hero-media-col reveal d2">
       <!-- MEDIA SLOT: HERO AUTHORITY SESSION — live DGM authority session film -->
       <div class="session-media mask">
         <span class="sm-corner"><span class="dot"></span> Authority Session</span>
