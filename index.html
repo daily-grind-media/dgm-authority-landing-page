@@ -101,8 +101,10 @@ p strong{color:var(--white);font-weight:500;}
 .hero-sub{font-family:'Barlow',sans-serif;font-weight:300;color:#cfccc6;font-size:clamp(1.02rem,2vw,1.28rem);margin-top:clamp(26px,3.4vw,38px);max-width:58ch;line-height:1.6;}
 .hero-line{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--copper-light);font-size:clamp(1.1rem,2.6vw,1.55rem);margin-top:18px;max-width:46ch;line-height:1.4;}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:16px;margin-top:clamp(34px,4vw,46px);}
-/* base (mobile-first): single column, media sits beneath the copy at full width */
+/* base (mobile-first): single column */
 .hero-grid{display:grid;grid-template-columns:1fr;gap:clamp(30px,5vw,48px);align-items:center;position:relative;z-index:2;}
+/* the mobile media wrapper is hidden by default; shown only at <=960px */
+.hero-media-mobile{display:none;}
 /* desktop: wider editorial canvas, balanced two-column composition, larger horizontal headline + substantial 16:9 video */
 @media(min-width:961px){
   .hero .wrap{max-width:1500px;padding-left:clamp(48px,5vw,80px);padding-right:clamp(48px,5vw,80px);}
@@ -112,19 +114,19 @@ p strong{color:var(--white);font-weight:500;}
   .hero-title .brk-m{display:none;}
   .hero-title .brk-d{display:inline;}
   .session-media{width:100%;max-width:600px;justify-self:end;}
+  .hero-media-mobile{display:none;}
+  .hero-media-col{display:block;}
 }
-/* tablet/mobile: single flex column; copy wrapper dissolves so its children interleave with the
-   media via order — sequence is Eyebrow → Headline → Copy → Video → CTAs → Metadata (no duplicate iframe, no transforms) */
+/* tablet/mobile: straightforward one-column block flow; the in-flow mobile video sits
+   directly beneath the supporting copy — normal document flow, no reordering, no transforms. */
 @media(max-width:960px){
-  .hero-grid{display:flex;flex-direction:column;gap:0;}
-  .hero-copy{display:contents;}
-  .hero-eyebrow{order:1;}
-  .hero-title{order:2;}
-  .hero-sub{order:3;}
-  .hero-media-col{order:4;margin-top:clamp(24px,6vw,32px);}
-  .hero-ctas{order:5;margin-top:clamp(28px,6vw,36px);}
-  .hero-meta{order:6;margin-top:clamp(30px,7vw,40px);}
-  .session-media{width:100%;max-width:100%;}
+  .hero-grid{display:block;}
+  .hero-copy{display:block;width:100%;}
+  .hero-media-col{display:none;}
+  .hero-media-mobile{display:block;width:100%;margin-top:clamp(24px,6vw,32px);}
+  .hero-media-mobile .session-media{width:100%;max-width:100%;aspect-ratio:16/9;}
+  .hero-ctas{margin-top:clamp(28px,6vw,36px);}
+  .hero-meta{margin-top:clamp(30px,7vw,40px);}
 }
 /* hero metadata strip */
 .hero-meta{display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,30px);margin-top:clamp(30px,4vw,42px);}
@@ -406,6 +408,22 @@ footer .lockup{justify-content:center;}
       <div class="hero-eyebrow reveal">Authority / Daily Grind Media — San Diego</div>
       <h1 class="hero-title reveal d1">One Hour<br class="brk-m"> Of<br class="brk-d"> Your Time.<span class="row2">An Entire<br class="brk-m"> Marketing<br class="brk-d"> Ecosystem.</span></h1>
       <p class="hero-sub reveal d2">You bring the expertise. We handle the strategy, production, content creation, and distribution that turns it into authority across the platforms that matter to your business.</p>
+      <!-- MOBILE HERO MEDIA — same Authority Session source as desktop; only one is ever visible per breakpoint -->
+      <div class="hero-media-mobile reveal">
+        <div class="session-media">
+          <span class="sm-corner"><span class="dot"></span> Authority Session</span>
+          <span class="sm-time">Source Conversation</span>
+          <div class="sm-video">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/s-2A90-W9Fs?rel=0&modestbranding=1&playsinline=1"
+              title="DGM Authority Session"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
       <div class="hero-ctas reveal d3">
         <a href="#authority-inquiry" class="btn btn-primary">Tell Us About Your Business <span class="ar">→</span></a>
         <a href="#shift" class="btn btn-ghost">See How It Works <span class="ar">↓</span></a>
